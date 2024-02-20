@@ -1,0 +1,263 @@
+Grad_1) The different between original question (#4) and this one is, #4 was using track_year,
+and this question was asking use position year, which could be abs different year. Thus, 
+the track year can be 1940, but never get any position until 1970. 
+
+
+mysql> use project
+Database changed
+mysql> # Queries Grad 1
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `Artist`, 
+    -> tr_datepeaked as `Date Peaked`, po_pos as `highest position`
+    -> from tracks, people, position
+    -> where year(po_date) = 1969 
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos = 1 )
+    -> order by tr_datepeaked ASC;
++---------------------------------------------------+-----------------------------------------+-------------+------------------+
+| Song Title                                        | Artist                                  | Date Peaked | highest position |
++---------------------------------------------------+-----------------------------------------+-------------+------------------+
+| I Heard It Through The Grapevine                  | Marvin Gaye                             | 1968-12-14  |                1 |
+| Crimson And Clover                                | Tommy James and the Shondells           | 1969-02-01  |                1 |
+| Everyday People                                   | Sly & the Family Stone                  | 1969-02-15  |                1 |
+| Dizzy                                             | Tommy Roe                               | 1969-03-15  |                1 |
+| Aquarius/Let The Sunshine In (The Flesh Failures) | 5th Dimension, The                      | 1969-04-12  |                1 |
+| Get Back                                          | Beatles, The                            | 1969-05-24  |                1 |
+| Love Theme From Romeo & Juliet                    | Henry Mancini, His Orchestra and Chorus | 1969-06-28  |                1 |
+| In The Year 2525 (Exordium & Terminus)            | Zager & Evans                           | 1969-07-12  |                1 |
+| Honky Tonk Women                                  | Rolling Stones, The                     | 1969-08-23  |                1 |
+| Sugar, Sugar                                      | Archies, The                            | 1969-09-20  |                1 |
+| I Can't Get Next To You                           | Temptations, The                        | 1969-10-18  |                1 |
+| Suspicious Minds                                  | Elvis Presley                           | 1969-11-01  |                1 |
+| Wedding Bell Blues                                | 5th Dimension, The                      | 1969-11-08  |                1 |
+| Come Together                                     | Beatles, The                            | 1969-11-29  |                1 |
+| Na Na Hey Hey Kiss Him Goodbye                    | Steam                                   | 1969-12-06  |                1 |
+| Leaving on A Jet Plane                            | Peter, Paul and Mary                    | 1969-12-20  |                1 |
+| Someday We'll Be Together                         | Diana Ross and the Supremes             | 1969-12-27  |                1 |
++---------------------------------------------------+-----------------------------------------+-------------+------------------+
+17 rows in set (0.02 sec)
+
+mysql> # Queries Grad 2
+mysql> select tr_title as `Song Title`, group_concat(distinct people.person) AS `Composer`, 
+    -> #select tr_title as `Song Title`, people.person AS `Composer`, 
+    -> tr_datepeaked as `Date Peaked`, min(po_pos )as `highest position` , tr_id
+    -> , count(DISTINCT A.wr_p_id) as `times`
+    -> from tracks, people, position, wrote as A
+    -> where tr_year >= 1964 and tr_year <= 1969
+    -> AND (A.wr_p_id = People.p_id)
+    -> AND (A.wr_track_id = tracks.tr_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> GROUP BY tr_id having `times` > 1
+    -> order by tr_datepeaked ASC, people.person
+    -> LIMIT 100;
++-----------------------------------------------------+----------------------------------------------------------------------------+-------------+------------------+-------+-------+
+| Song Title                                          | Composer                                                                   | Date Peaked | highest position | tr_id | times |
++-----------------------------------------------------+----------------------------------------------------------------------------+-------------+------------------+-------+-------+
+| Midnight Mary                                       | Artie Wayne,Ben Raleigh                                                    | 1964-01-04  |               10 |   102 |     2 |
+| Quicksand                                           | Brian Holland,Eddie Holland Jr.,Lamont Dozier                              | 1964-01-04  |                8 |    86 |     3 |
+| Turn Around                                         | Alan Greene,Harry Belafonte,Malvina Reynolds                               | 1964-01-04  |               27 |   225 |     3 |
+| I Have A Boyfriend                                  | Ellie Greenwich,Henry Medress,Jay Siegel,Jeff Barry,Mitch Margo,Phil Margo | 1964-01-04  |               36 |   281 |     6 |
+| Coming Back To You                                  | Ed Townsend,James W. Alexander                                             | 1964-01-04  |               99 |   699 |     2 |
+| That Boy John                                       | Ellie Greenwich,Jeff Barry                                                 | 1964-01-04  |               64 |   448 |     2 |
+| Kansas City (Live)                                  | Jerry Leiber,Mike Stoller                                                  | 1964-01-04  |               23 |   192 |     2 |
+| Cold Cold Winter                                    | David White,John Madara                                                    | 1964-01-04  |               79 |   533 |     2 |
+| The Cheer Leader                                    | Fred Tobias,Lee Pockriss                                                   | 1964-01-04  |               78 |   527 |     2 |
+| There! I've Said It Again                           | David A. Mann,Redd Evans                                                   | 1964-01-04  |                1 |     3 |     2 |
+| Where Or When                                       | Lorenz Hart,Richard Rodgers                                                | 1964-01-04  |               98 |   690 |     2 |
+| Baby's Gone                                         | Bobby Goldsboro,Roy Orbison                                                | 1964-01-04  |               84 |   559 |     2 |
+| For Your Precious Love                              | Arthur Brooks,Jerry Butler,Richard Brooks                                  | 1964-01-11  |               26 |   218 |     3 |
+| I Gotta Dance To Keep From Crying                   | Brian Holland,Eddie Holland Jr.,Lamont Dozier                              | 1964-01-11  |               35 |   268 |     3 |
+| When The Lovelight Starts Shining Through His Eyes  | Brian Holland,Eddie Holland Jr.,Lamont Dozier                              | 1964-01-11  |               23 |   190 |     3 |
+| Wives And Lovers                                    | Burt Bacharach,Hal David                                                   | 1964-01-11  |               14 |   134 |     2 |
+| Bon-Doo-Wah                                         | Dave Appell,Kal Mann                                                       | 1964-01-11  |               55 |   402 |     2 |
+| Please                                              | Leo Robin,Ralph Rainger                                                    | 1964-01-11  |               71 |   489 |     2 |
+| True Love Goes On And On                            | Jerry Ross,Richard Adler                                                   | 1964-01-11  |               66 |   462 |     2 |
+| Tra La La La Suzy                                   | Brenda Lee Jones,Welton Young                                              | 1964-01-18  |               35 |   274 |     2 |
+| Today's Teardrops                                   | Aaron Schroeder,Gene Pitney                                                | 1964-01-18  |               54 |   396 |     2 |
+| Snap Your Fingers                                   | Alex Zanetis,Grady Martin                                                  | 1964-01-18  |               71 |   492 |     2 |
+| That Lucky Old Sun                                  | Beasley Smith,Haven Gillespie                                              | 1964-01-18  |               20 |   178 |     2 |
+| Judy Loves Me                                       | Artie Kornfeld,Don Atfeld,Jan Berry                                        | 1964-01-18  |               95 |   660 |     3 |
+| Drag City                                           | Brian Wilson,Jan Berry,Roger Christian                                     | 1964-01-18  |               10 |   103 |     3 |
+| Deep In The Heart Of Harlem                         | Carl Spencer,Jimmy Radcliffe                                               | 1964-01-18  |               90 |   599 |     2 |
+| We Belong Together                                  | Hy Weiss,Johnny Mitchell,Robert Carr                                       | 1964-01-18  |               75 |   514 |     3 |
+| Surfin' Bird                                        | Al Frazier,Carl White,John Earl Harris,Turner Wilson Jr.                   | 1964-01-25  |                4 |    45 |     4 |
+| His Kiss                                            | Bert Russell (Bert Berns),Mike Stoller                                     | 1964-01-25  |               89 |   591 |     2 |
+| Saginaw, Michigan                                   | Bill Anderson,Don Wayne                                                    | 1964-01-25  |               85 |   565 |     2 |
+| Billie Baby                                         | Harold Logan,Lloyd Price                                                   | 1964-01-25  |               84 |   561 |     2 |
+| In The Summer Of His Years                          | David Lee,Herbert Kretzmer                                                 | 1964-01-25  |               46 |   345 |     2 |
+| Do-Wah-Diddy                                        | Ellie Greenwich,Jeff Barry                                                 | 1964-01-25  |               78 |   528 |     2 |
+| Slipin' And Slidin'                                 | Albert Collins,Edwin Bocage,James Smith,Richard Penniman                   | 1964-01-25  |               96 |   668 |     4 |
+| The Little Boy                                      | Al Stillman,Guy Wood                                                       | 1964-02-01  |               52 |   379 |     2 |
+| Dumb Head                                           | Camille Monte,David Hess                                                   | 1964-02-01  |               50 |   367 |     2 |
+| Baby, I Love You                                    | Barry Mann,Ellie Greenwich,Phil Spector                                    | 1964-02-01  |               24 |   199 |     3 |
+| Girls Grow Up Faster Than Boys                      | Gerry Goffin,Jack Keller                                                   | 1964-02-01  |               33 |   253 |     2 |
+| Stay With Me                                        | Carolyn Leigh,Jerome Moross                                                | 1964-02-01  |               81 |   542 |     2 |
+| I Want To Hold Your Hand                            | John Lennon,Paul McCartney                                                 | 1964-02-01  |                1 |     1 |     2 |
+| You Don't Own Me                                    | David White,John Madara                                                    | 1964-02-01  |                2 |    25 |     2 |
+| So Far Away                                         | Hank Jacobs,Kent Harris                                                    | 1964-02-01  |               91 |   610 |     2 |
+| Watch Your Step                                     | Kenny Gamble,Luther Dixon,Thom Bell                                        | 1964-02-01  |               58 |   418 |     3 |
+| Somewhere                                           | Jimmy Wisner,Norma Mendoza                                                 | 1964-02-01  |               19 |   175 |     2 |
+| Tonight You're Gonna Fall In Love With Me           | Artie Kornfeld,Toni Wine                                                   | 1964-02-01  |               57 |   413 |     2 |
+| Hey Little Cobra                                    | Carol Connors,Marshall H. Connors                                          | 1964-02-08  |                4 |    44 |     2 |
+| I Can't Stop Talking About You                      | Carole King,Gerry Goffin                                                   | 1964-02-08  |               35 |   269 |     2 |
+| Hooka Tooka                                         | Chubby Checker,Judy Henske                                                 | 1964-02-08  |               17 |   160 |     2 |
+| Little Boy                                          | Ellie Greenwich,Jeff Barry,Phil Spector                                    | 1964-02-08  |               92 |   628 |     3 |
+| Here's A Heart                                      | Ervan Waters,Sam Culley,William Collier                                    | 1964-02-08  |               89 |   595 |     3 |
+| (It's No) Sin                                       | Chester Shull,George Hoven                                                 | 1964-02-08  |               74 |   508 |     2 |
+| Stranger In Your Arms                               | Hank Hunter,Vic Thomas                                                     | 1964-02-08  |               83 |   557 |     2 |
+| Daisy Petal Pickin'                                 | Glynn Thames,Juanita Jordan,Keith McCormack                                | 1964-02-08  |               15 |   145 |     3 |
+| You'll Never Walk Alone                             | Oscar Hammerstein II,Richard Rodgers                                       | 1964-02-08  |               34 |   265 |     2 |
+| Harlem Shuffle                                      | Earl Nelson,Robert Relf                                                    | 1964-02-08  |               44 |   330 |     2 |
+| For You                                             | Al Dubin,Joe Burke                                                         | 1964-02-15  |                6 |    72 |     2 |
+| Wow Wow Wee (He's The Boy For Me)                   | Bob Feldman,Jerry Goldstein,Peggy Farina,Richard Gottehrer,Robert Spencer  | 1964-02-15  |               41 |   304 |     5 |
+| Anyone Who Had A Heart                              | Burt Bacharach,Hal David                                                   | 1964-02-15  |                8 |    84 |     2 |
+| It's All In The Game                                | Carl Sigman,Charles Gates Dawes                                            | 1964-02-15  |               25 |   205 |     2 |
+| Where Did I Go Wrong                                | Dave Appell,Kal Mann                                                       | 1964-02-15  |               82 |   545 |     2 |
+| I Didn't Know What Time It Was                      | Lorenz Hart,Richard Rodgers                                                | 1964-02-15  |               92 |   629 |     2 |
+| Shimmy Shimmy                                       | Albert Shubert,Bill Massey                                                 | 1964-02-22  |               66 |   461 |     2 |
+| Dawn (Go Away)                                      | Bob Gaudio,Sandy Linzer                                                    | 1964-02-22  |                3 |    33 |     2 |
+| Leaving Here                                        | Brian Holland,Eddie Holland Jr.,Lamont Dozier                              | 1964-02-22  |               76 |   519 |     3 |
+| All My Trials                                       | DeeDee Sperling,Dick Gosting                                               | 1964-02-22  |               89 |   593 |     2 |
+| Please, Please, Please                              | James Brown,Johnny Terry                                                   | 1964-02-22  |               95 |   662 |     2 |
+| 442 Glenwood Avenue                                 | David White,Gary Browne,John Madara                                        | 1964-02-22  |               56 |   405 |     3 |
+| That Girl Belongs To Yesterday                      | Keith Richards,Mick Jagger                                                 | 1964-02-22  |               49 |   361 |     2 |
+| Have You Ever Been Lonely (Have You Ever Been Blue) | Peter DeRose,William Hill                                                  | 1964-02-22  |               94 |   648 |     2 |
+| Java                                                | Allan Toussaint,Alvin Tyler,Freddie Friday,Marilyn Schack                  | 1964-02-29  |                4 |    48 |     4 |
+| Going Going Gone                                    | Alan Thomas,Emil Anton                                                     | 1964-02-29  |               35 |   272 |     2 |
+| He Says The Same Things To Me                       | Gary Geld,Peter Udell                                                      | 1964-02-29  |               47 |   349 |     2 |
+| California Sun                                      | Henry Glover,Morris Levy                                                   | 1964-02-29  |                5 |    61 |     2 |
+| He'll Have To Go                                    | Audrey Allison,Joe Allison                                                 | 1964-02-29  |               51 |   371 |     2 |
+| Gonna Send You Back To Georgia (A City Slick)       | Jake Hammonds Jr.,Johnnie Matthews                                         | 1964-02-29  |               41 |   309 |     2 |
+| Vaya Con Dios                                       | Buddy Pepper,Inez James,Larry Russell                                      | 1964-02-29  |               43 |   323 |     3 |
+| Come On                                             | Dan Penn,Rick Hall                                                         | 1964-02-29  |               36 |   278 |     2 |
+| Willyam, Willyam                                    | Jimmy Wisner,William Jackson                                               | 1964-02-29  |               97 |   687 |     2 |
+| Mo-Onions                                           | Al Jackson,Booker T. Jones,Lewie Steinberg,Steve Cropper                   | 1964-03-07  |               97 |   677 |     4 |
+| Tell Me Baby                                        | Bob Halley,Carl Spencer                                                    | 1964-03-07  |               69 |   479 |     2 |
+| High On A Hill                                      | Anna Vito,Frank Cari                                                       | 1964-03-07  |               77 |   521 |     2 |
+| Bye Bye Barbara                                     | Jack Segal,Paul Vance                                                      | 1964-03-07  |               53 |   391 |     2 |
+| Abigail Beecher                                     | Richard Heard,Robert Boulanger                                             | 1964-03-07  |               16 |   157 |     2 |
+| Can Your Monkey Do The Dog                          | Rufus Thomas,Steve Cropper                                                 | 1964-03-07  |               48 |   354 |     2 |
+| Live Wire                                           | Brian Holland,Eddie Holland Jr.,Lamont Dozier                              | 1964-03-14  |               42 |   316 |     3 |
+| Navy Blue                                           | Bob Crewe,Bud Rehak,Eddie Rambeau                                          | 1964-03-14  |                6 |    67 |     3 |
+| I Wonder Who's Kissing Her Now                      | Frank Adams,Joe Howard,Will Hough                                          | 1964-03-14  |               93 |   644 |     3 |
+| Please Please Me                                    | John Lennon,Paul McCartney                                                 | 1964-03-14  |                3 |    35 |     2 |
+| Who Do You Love                                     | Jerry Ross,Kenny Gamble                                                    | 1964-03-14  |               25 |   207 |     2 |
+| I Wish You Love                                     | Charles Trenet,Lee Wilson                                                  | 1964-03-14  |               28 |   229 |     2 |
+| I Only Want To Be With You                          | Ivor Raymonde,Mike Hawker                                                  | 1964-03-14  |               12 |   125 |     2 |
+| (The Story Of) Woman, Love And A Man                | Tony Clarke,Wilfred McKinley                                               | 1964-03-14  |               88 |   589 |     2 |
+| Young And In Love                                   | Bernie Baum,Ethel Lee,Florence Kaye                                        | 1964-03-21  |               53 |   389 |     3 |
+| Run, Run, Run                                       | Brian Holland,Eddie Holland Jr.,Lamont Dozier                              | 1964-03-21  |               93 |   646 |     3 |
+| Kissin' Cousins                                     | Fred Wise,Warren Nadel                                                     | 1964-03-21  |               12 |   122 |     2 |
+| Stardust                                            | Hoagy Carmichael,Mitchell Parish                                           | 1964-03-21  |               32 |   247 |     2 |
+| Out Of Sight-Out Of Mind                            | Clyde Otis,Ivory Joe Hunter                                                | 1964-03-21  |               71 |   491 |     2 |
+| Worried Guy                                         | Jack Reardon,Paul Evans                                                    | 1964-03-21  |               37 |   285 |     2 |
+| My Boyfriend Got A Beatle Haircut                   | Bugs Bower,Jack Wolf                                                       | 1964-03-21  |               83 |   555 |     2 |
+| Searchin'                                           | Jerry Leiber,Mike Stoller                                                  | 1964-03-21  |               84 |   563 |     2 |
++-----------------------------------------------------+----------------------------------------------------------------------------+-------------+------------------+-------+-------+
+100 rows in set (0.07 sec)
+
+mysql> # Queries Grad 3
+mysql> select people.person AS `Artist`,
+    -> MIN(tracks.tr_dateentered) AS `start`, MAX(tracks.tr_dateentered) AS `end`
+    -> from tracks, people, position
+    -> where Tracks.tr_artist_id = People.p_id
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos = 1 )
+    -> GROUP BY tracks.tr_artist_id
+    -> order by (`end` - `start`) DESC
+    -> LIMIT 10;
++---------------------+------------+------------+
+| Artist              | start      | end        |
++---------------------+------------+------------+
+| Rolling Stones, The | 1965-06-12 | 1973-09-08 |
+| Temptations, The    | 1965-01-16 | 1972-10-14 |
+| Beatles, The        | 1964-01-18 | 1970-05-23 |
+| B.J. Thomas         | 1969-11-01 | 1975-02-01 |
+| Marvin Gaye         | 1968-11-23 | 1973-07-14 |
+| Simon and Garfunkel | 1965-11-20 | 1970-02-07 |
+| Carpenters          | 1970-06-20 | 1974-11-23 |
+| Ray Stevens         | 1970-04-04 | 1974-04-13 |
+| Bee Gees            | 1971-06-26 | 1975-05-31 |
+| Staple Singers, The | 1972-04-08 | 1975-10-25 |
++---------------------+------------+------------+
+10 rows in set (0.02 sec)
+
+mysql> # Queries Grad 4
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `Artist`, count(tr_title) as `Longest position`,
+    -> po_pos as `position`
+    -> from tracks, people, position
+    -> where (tr_year between 1970 and 1972)
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos = 1 )
+    -> GROUP BY tr_title
+    -> order by count(tr_title) DESC
+    -> LIMIT 100;
++--------------------------------------------------------------------+--------------------------+------------------+----------+
+| Song Title                                                         | Artist                   | Longest position | position |
++--------------------------------------------------------------------+--------------------------+------------------+----------+
+| Bridge Over Troubled Water                                         | Simon and Garfunkel      |                6 |        1 |
+| Joy To The World                                                   | Three Dog Night          |                6 |        1 |
+| Alone Again (Naturally)                                            | Gilbert O'Sullivan       |                6 |        1 |
+| The First Time Ever I Saw Your Face                                | Roberta Flack            |                6 |        1 |
+| Maggie May                                                         | Rod Stewart              |                5 |        1 |
+| It's Too Late                                                      | Carole King              |                5 |        1 |
+| I Feel The Earth Move                                              | Carole King              |                5 |        1 |
+| I'll Be There                                                      | Jackson 5                |                5 |        1 |
+| One Bad Apple                                                      | Osmonds, The             |                5 |        1 |
+| Raindrops Keep Fallin' On My Head                                  | B.J. Thomas              |                4 |        1 |
+| My Sweet Lord                                                      | George Harrison          |                4 |        1 |
+| American Pie (Parts 1 and 2)                                       | Don McLean               |                4 |        1 |
+| I Can See Clearly Now                                              | Johnny Nash              |                4 |        1 |
+| How Can You Mend A Broken Heart                                    | Bee Gees                 |                4 |        1 |
+| (They Long To Be) Close To You                                     | Carpenters               |                4 |        1 |
+| Without You                                                        | Nilsson                  |                4 |        1 |
+| American Woman                                                     | Guess Who, The           |                3 |        1 |
+| War                                                                | Edwin Starr              |                3 |        1 |
+| Brand New Key                                                      | Melanie                  |                3 |        1 |
+| Baby Don't Get Hooked On Me                                        | Mac Davis                |                3 |        1 |
+| The Candy Man                                                      | Sammy Davis Jr.          |                3 |        1 |
+| Lean On Me                                                         | Bill Withers             |                3 |        1 |
+| I Think I Love You                                                 | Partridge Family, The    |                3 |        1 |
+| Ain't No Mountain High Enough                                      | Diana Ross               |                3 |        1 |
+| Knock Three Times                                                  | Dawn                     |                3 |        1 |
+| Go Away Little Girl                                                | Donny Osmond             |                3 |        1 |
+| Family Affair                                                      | Sly and the Family Stone |                3 |        1 |
+| A Horse With No Name                                               | America                  |                3 |        1 |
+| Me And Mrs. Jones                                                  | Billy Paul               |                3 |        1 |
+| My Ding-A-Ling                                                     | Chuck Berry              |                2 |        1 |
+| Everything Is Beautiful                                            | Ray Stevens              |                2 |        1 |
+| Mama Told Me (Not To Come)                                         | Three Dog Night          |                2 |        1 |
+| The Love You Save                                                  | Jackson 5                |                2 |        1 |
+| Thank You (Falettinme Be Mice Elf Agin)                            | Sly and the Family Stone |                2 |        1 |
+| Let It Be                                                          | Beatles, The             |                2 |        1 |
+| The Tears Of A Clown                                               | Smokey Robinson          |                2 |        1 |
+| The Long And Winding Road                                          | Beatles, The             |                2 |        1 |
+| Gypsys, Tramps & Thieves                                           | Cher                     |                2 |        1 |
+| Just My Imagination (Running Away With Me)                         | Temptations, The         |                2 |        1 |
+| Theme From "Shaft"                                                 | Isaac Hayes              |                2 |        1 |
+| ABC                                                                | Jackson 5                |                2 |        1 |
+| Me And Bobby McGee                                                 | Janis Joplin             |                2 |        1 |
+| Brown Sugar                                                        | Rolling Stones, The      |                2 |        1 |
+| Cracklin' Rosie                                                    | Neil Diamond             |                1 |        1 |
+| Let's Stay Together                                                | Al Green                 |                1 |        1 |
+| You've Got A Friend                                                | James Taylor             |                1 |        1 |
+| Song Sung Blue                                                     | Neil Diamond             |                1 |        1 |
+| Papa Was A Rollin' Stone                                           | Temptations, The         |                1 |        1 |
+| Heart Of Gold                                                      | Neil Young               |                1 |        1 |
+| Indian Reservation (The Lament Of The Cherokee Reservation Indian) | Raiders, The             |                1 |        1 |
+| Want Ads                                                           | Honey Cone, The          |                1 |        1 |
+| Uncle Albert / Admiral Halsey                                      | Paul and Linda McCartney |                1 |        1 |
+| I Am Woman                                                         | Helen Reddy              |                1 |        1 |
+| Make It With You                                                   | Bread                    |                1 |        1 |
+| I Want You Back                                                    | Jackson 5                |                1 |        1 |
+| Venus                                                              | Shocking Blue, The       |                1 |        1 |
+| Brandy (You're A Fine Girl)                                        | Looking Glass            |                1 |        1 |
+| I'll Take You There                                                | Staple Singers, The      |                1 |        1 |
+| Oh Girl                                                            | Chi-Lites, The           |                1 |        1 |
+| Ben                                                                | Michael Jackson          |                1 |        1 |
+| Black & White                                                      | Three Dog Night          |                1 |        1 |
++--------------------------------------------------------------------+--------------------------+------------------+----------+
+61 rows in set (0.01 sec)
+
+mysql> notee

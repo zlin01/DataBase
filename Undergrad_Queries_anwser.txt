@@ -1,0 +1,659 @@
+mysql> use project;
+Database changed
+mysql> #1
+mysql> select tr_yearlyrank, tr_title, tr_artist_id, tr_dateentered
+    -> from tracks, people, position 
+    -> where po_date = '1968-09-07' 
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> order by po_pos;
++---------------+--------------------------------------------------+--------------+----------------+
+| tr_yearlyrank | tr_title                                         | tr_artist_id | tr_dateentered |
++---------------+--------------------------------------------------+--------------+----------------+
+| 1968_005      | People Got To Be Free                            | 4598         | 1968-07-20     |
+| 1968_020      | Born To Be Wild                                  | 4607         | 1968-07-13     |
+| 1968_033      | Light My Fire                                    | 1659         | 1968-07-27     |
+| 1968_014      | Harper Valley P.T.A.                             | 4602         | 1968-08-24     |
+| 1968_011      | Hello, I Love You                                | 4447         | 1968-07-06     |
+| 1968_061      | The House That Jack Built                        | 1190         | 1968-08-17     |
+| 1968_052      | 1,2,3 Red Light                                  | 4613         | 1968-07-27     |
+| 1968_074      | You're All I Need To Get By                      | 547          | 1968-07-27     |
+| 1968_084      | I Can't Stop Dancing                             | 4599         | 1968-07-20     |
+| 1968_089      | Stay In My Corner                                | 4534         | 1968-06-29     |
+| 1968_054      | Sunshine Of Your Love                            | 4619         | 1968-01-13     |
+| 1968_065      | You Keep Me Hangin' On                           | 4543         | 1968-07-13     |
+| 1968_044      | Hush                                             | 4615         | 1968-08-17     |
+| 1968_068      | Turn Around, Look At Me                          | 4136         | 1968-06-15     |
+| 1968_122      | Love Makes A Woman                               | 821          | 1968-07-13     |
+| 1968_024      | Classical Gas                                    | 1181         | 1968-06-22     |
+| 1968_064      | The Fool On The Hill                             | 4359         | 1968-08-10     |
+| 1968_063      | Slip Away                                        | 1242         | 1968-07-13     |
+| 1968_129      | Journey To The Center Of The Mind                | 4637         | 1968-06-29     |
+| 1968_140      | Soul-Limbo                                       | 4103         | 1968-07-13     |
+| 1968_146      | Sealed With A Kiss                               | 4124         | 1968-06-22     |
+| 1968_157      | Do It Again                                      | 3873         | 1968-07-27     |
+| 1968_096      | I Say A Little Prayer                            | 1190         | 1968-08-17     |
+| 1968_030      | Stoned Soul Picnic                               | 4465         | 1968-06-01     |
+| 1968_105      | Dream A Little Dream Of Me                       | 4630         | 1968-07-06     |
+| 1968_194      | Please Return Your Love To Me                    | 3932         | 1968-08-03     |
+| 1968_186      | Magic Bus                                        | 4265         | 1968-08-10     |
+| 1968_207      | Mr. Businessman                                  | 4418         | 1968-08-03     |
+| 1968_179      | Tuesday Afternoon (Forever Afternoon)            | 4154         | 1968-07-20     |
+| 1968_076      | I've Gotta Get A Message To You                  | 4475         | 1968-08-17     |
+| 1968_106      | Pictures Of Matchstick Men                       | 4631         | 1968-05-18     |
+| 1968_204      | The Eyes Of A New York Woman                     | 4310         | 1968-06-22     |
+| 1968_234      | Girls Can't Do What The Guys Do                  | 2295         | 1968-08-03     |
+| 1968_238      | I Get The Sweetest Feeling                       | 637          | 1968-07-20     |
+| 1968_135      | On The Road Again                                | 4639         | 1968-08-10     |
+| 1968_235      | Down At Lulu's                                   | 4499         | 1968-08-03     |
+| 1968_195      | Special Occasion                                 | 607          | 1968-08-17     |
+| 1968_048      | Girl Watcher                                     | 4617         | 1968-08-17     |
+| 1968_198      | Alice Long (You're Still My Favorite Girlfriend) | 4510         | 1968-07-06     |
+| 1968_273      | I've Never Found A Girl (To Love Me Like You Do) | 870          | 1968-07-27     |
+| 1968_057      | Hurdy Gurdy Man                                  | 4176         | 1968-06-22     |
+| 1968_283      | I Can't Dance To That Music You're Playin'       | 4472         | 1968-08-10     |
+| 1968_289      | Give A Damn                                      | 4470         | 1968-08-03     |
+| 1968_200      | The Snake                                        | 4650         | 1968-08-17     |
+| 1968_026      | Little Green Apples                              | 4609         | 1968-08-17     |
+| 1968_219      | Hip City (Part 2)                                | 4133         | 1968-08-10     |
+| 1968_293      | Brown Eyed Woman                                 | 227          | 1968-08-03     |
+| 1968_312      | Six Man Band                                     | 4287         | 1968-08-24     |
+| 1968_278      | I Wish It Would Rain                             | 3983         | 1968-08-24     |
+| 1968_246      | Help Yourself                                    | 676          | 1968-08-31     |
+| 1968_097      | Time Has Come Today                              | 4627         | 1968-08-10     |
+| 1968_230      | Who Is Gonna Love Me                             | 3910         | 1968-08-24     |
+| 1968_344      | Morning Dew                                      | 4445         | 1968-08-10     |
+| 1968_303      | And Suddenly                                     | 4661         | 1968-07-20     |
+| 1968_353      | Can't You Find Another Way (Of Doing It)         | 4331         | 1968-08-03     |
+| 1968_328      | To Wait For Love                                 | 1633         | 1968-08-31     |
+| 1968_301      | Listen Here                                      | 1716         | 1968-06-15     |
+| 1968_348      | Keep The One You Got                             | 474          | 1968-08-10     |
+| 1968_107      | Piece Of My Heart                                | 4632         | 1968-08-31     |
+| 1968_095      | Say It Loud - I'm Black And I'm Proud (Part 1)   | 126          | 1968-09-07     |
+| 1968_159      | (The Lament Of The Cherokee) Indian Reservation  | 4642         | 1968-08-31     |
+| 1968_072      | My Special Angel                                 | 4136         | 1968-09-07     |
+| 1968_406      | Workin' On A Groovy Thing                        | 4563         | 1968-08-03     |
+| 1968_055      | Midnight Confessions                             | 4339         | 1968-08-31     |
+| 1968_361      | The Weight                                       | 184          | 1968-08-24     |
+| 1968_214      | In-A-Gadda-Da-Vida                               | 4654         | 1968-08-24     |
+| 1968_439      | Barefoot In Baltimore                            | 4449         | 1968-08-31     |
+| 1968_398      | I Loved And I Lost                               | 3925         | 1968-07-20     |
+| 1968_294      | Down On Me                                       | 4632         | 1968-08-31     |
+| 1968_429      | (There's) Always Something There To Remind Me    | 3910         | 1968-08-31     |
+| 1968_245      | Break Your Promise                               | 4616         | 1968-08-31     |
+| 1968_225      | Baby, Come Back                                  | 4655         | 1968-09-07     |
+| 1968_341      | Fly Me To The Moon                               | 145          | 1968-08-17     |
+| 1968_463      | Down Here On The Ground                          | 1072         | 1968-08-31     |
+| 1968_493      | Private Number                                   | 4684         | 1968-08-31     |
+| 1968_416      | The Weight                                       | 4675         | 1968-08-31     |
+| 1968_481      | Unchained Melody                                 | 4529         | 1968-08-31     |
+| 1968_421      | My Way Of Life                                   | 3965         | 1968-08-31     |
+| 1968_133      | Hey, Western Union Man                           | 980          | 1968-08-31     |
+| 1968_499      | That Kind Of Woman                               | 4621         | 1968-08-31     |
+| 1968_028      | Fire                                             | 4610         | 1968-09-07     |
+| 1968_528      | The Mule                                         | 4691         | 1968-08-31     |
+| 1968_387      | Don't Change Your Love                           | 4362         | 1968-08-24     |
+| 1968_318      | Street Fighting Man                              | 3906         | 1968-09-07     |
+| 1968_538      | Do What You Gotta Do                             | 249          | 1968-08-31     |
+| 1968_564      | If Love Is In Your Heart                         | 4626         | 1968-08-31     |
+| 1968_549      | Then You Can Tell Me Goodbye                     | 2777         | 1968-09-07     |
+| 1968_218      | Shoot'em Up, Baby                                | 2071         | 1968-09-07     |
+| 1968_276      | Naturally Stoned                                 | 4660         | 1968-08-31     |
+| 1968_164      | Shape Of Things To Come                          | 4643         | 1968-09-07     |
+| 1968_568      | Light My Fire                                    | 4447         | 1968-08-31     |
+| 1968_102      | Suzie Q (Part 1)                                 | 4629         | 1968-09-07     |
+| 1968_268      | The Funky Judge                                  | 4659         | 1968-08-24     |
+| 1968_623      | The Woman I Love                                 | 1276         | 1968-08-24     |
+| 1968_635      | Sally Had A Party                                | 4716         | 1968-08-03     |
+| 1968_631      | Help Yourself (To All Of My Lovin')              | 4306         | 1968-08-31     |
+| 1968_656      | She's About A Mover                              | 4721         | 1968-08-24     |
+| 1968_664      | Since You've Been Gone                           | 847          | 1968-08-31     |
+| 1968_167      | Fool For You                                     | 3925         | 1968-09-07     |
+| 1968_681      | Lady Madonna                                     | 4035         | 1968-09-07     |
++---------------+--------------------------------------------------+--------------+----------------+
+100 rows in set (0.02 sec)
+
+mysql> # queries 2
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `artist`
+    -> from tracks, people, position
+    -> where YEAR(po_date) = '1970' 
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos = 10 )
+    -> order by tr_title ASC;
++----------------------------------------------------+------------------------------+
+| Song Title                                         | artist                       |
++----------------------------------------------------+------------------------------+
+| (I Know) I'm Losing You                            | Rare Earth                   |
+| 25 Or 6 To 4                                       | Chicago                      |
+| Ain't No Mountain High Enough                      | Diana Ross                   |
+| All Right Now                                      | Free                         |
+| Arizona                                            | Mark Lindsay                 |
+| Ball Of Confusion (That's What The World Is Today) | Temptations, The             |
+| Come And Get It                                    | Badfinger                    |
+| Didn't I (Blow Your Mind This Time)                | Delfonics, The               |
+| Easy Come, Easy Go                                 | Bobby Sherman                |
+| Evil Ways                                          | Santana                      |
+| Fire And Rain                                      | James Taylor                 |
+| Get Ready                                          | Rare Earth                   |
+| Green-Eyed Lady                                    | Sugarloaf                    |
+| He Ain't Heavy, He's My Brother                    | Hollies, The                 |
+| Hitchin' A Ride                                    | Vanity Fare                  |
+| I'll Never Fall In Love Again                      | Dionne Warwick               |
+| It Don't Matter To Me                              | Bread                        |
+| It's Only Make Believe                             | Glen Campbell                |
+| Jam Up Jelly Tight                                 | Tommy Roe                    |
+| Jingle Jangle                                      | Archies, The                 |
+| La La La (If I Had You)                            | Bobby Sherman                |
+| Lay Down (Candles In The Rain)                     | Melanie                      |
+| Leaving on A Jet Plane                             | Peter, Paul and Mary         |
+| Let It Be                                          | Beatles, The                 |
+| Lola (Studio)                                      | Kinks, The                   |
+| Lookin' Out My Back Door                           | Creedence Clearwater Revival |
+| Make It With You                                   | Bread                        |
+| Midnight Cowboy                                    | Ferrante and Teicher         |
+| Montego Bay                                        | Bobby Bloom                  |
+| No Matter What                                     | Badfinger                    |
+| O-o-h Child                                        | Five Stairsteps, The         |
+| Rainy Night In Georgia                             | Brook Benton                 |
+| Reflections Of My Life                             | Marmalade, The               |
+| Share The Land                                     | Guess Who, The               |
+| Spill The Wine                                     | Eric Burdon and War          |
+| The Long And Winding Road                          | Beatles, The                 |
+| The Love You Save                                  | Jackson 5                    |
+| The Rapper                                         | Jaggerz, The                 |
+| Tighter, Tighter                                   | Alive and Kicking            |
+| Turn Back The Hands Of Time                        | Tyrone Davis                 |
+| Up The Ladder To The Roof                          | Supremes, The                |
+| Venus                                              | Shocking Blue, The           |
+| Which Way You Goin' Billy?                         | Poppy Family, The            |
++----------------------------------------------------+------------------------------+
+43 rows in set (0.02 sec)
+
+mysql> # Queries 3
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `Composer`, po_pos as `highest position`
+    -> from tracks, people, position, wrote
+    -> where tr_year = 1972 
+    -> AND (wrote.wr_p_id = People.p_id)
+    -> AND (wrote.wr_track_id = tracks.tr_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos = 1 )
+    -> order by tr_title ASC;
++-------------------------------------+---------------------------+------------------+
+| Song Title                          | Composer                  | highest position |
++-------------------------------------+---------------------------+------------------+
+| A Horse With No Name                | Dewey Bunnell             |                1 |
+| Alone Again (Naturally)             | Gilbert O'Sullivan        |                1 |
+| American Pie (Parts 1 and 2)        | Don McLean                |                1 |
+| Baby Don't Get Hooked On Me         | Mac Davis                 |                1 |
+| Ben                                 | Walter Scharf             |                1 |
+| Ben                                 | Don Black                 |                1 |
+| Black & White                       | David Arkin               |                1 |
+| Black & White                       | Earl Robinson             |                1 |
+| Brandy (You're A Fine Girl)         | Elliot Lurie              |                1 |
+| Heart Of Gold                       | Neil Young                |                1 |
+| I Am Woman                          | Helen Reddy               |                1 |
+| I Am Woman                          | R. Burton                 |                1 |
+| I Can See Clearly Now               | Johnny Nash               |                1 |
+| I'll Take You There                 | Al Bell (Alvertis Isbell) |                1 |
+| Lean On Me                          | Bill Withers              |                1 |
+| Let's Stay Together                 | Willie Mitchell           |                1 |
+| Let's Stay Together                 | Al Green                  |                1 |
+| Let's Stay Together                 | Al Jackson                |                1 |
+| Me And Mrs. Jones                   | Kenny Gamble              |                1 |
+| Me And Mrs. Jones                   | Leon Huff                 |                1 |
+| Me And Mrs. Jones                   | Cary Gilbert              |                1 |
+| My Ding-A-Ling                      | Chuck Berry               |                1 |
+| Oh Girl                             | Eugene Record             |                1 |
+| Papa Was A Rollin' Stone            | Norman Whitfield          |                1 |
+| Papa Was A Rollin' Stone            | Barrett Strong            |                1 |
+| Song Sung Blue                      | Neil Diamond              |                1 |
+| The Candy Man                       | Anthony Newley            |                1 |
+| The Candy Man                       | Leslie Bricusse           |                1 |
+| The First Time Ever I Saw Your Face | Ewan MacColl              |                1 |
+| Without You                         | Thomas Evans              |                1 |
+| Without You                         | William Peter Ham         |                1 |
++-------------------------------------+---------------------------+------------------+
+31 rows in set (0.01 sec)
+
+mysql> # Queries 4
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `Artist`, 
+    -> tr_datepeaked as `Date Peaked`, po_pos as `highest position`
+    -> from tracks, people, position
+    -> where tr_year = 1969 
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos = 1 )
+    -> order by tr_datepeaked ASC;
++---------------------------------------------------+-----------------------------------------+-------------+------------------+
+| Song Title                                        | Artist                                  | Date Peaked | highest position |
++---------------------------------------------------+-----------------------------------------+-------------+------------------+
+| Crimson And Clover                                | Tommy James and the Shondells           | 1969-02-01  |                1 |
+| Everyday People                                   | Sly & the Family Stone                  | 1969-02-15  |                1 |
+| Dizzy                                             | Tommy Roe                               | 1969-03-15  |                1 |
+| Aquarius/Let The Sunshine In (The Flesh Failures) | 5th Dimension, The                      | 1969-04-12  |                1 |
+| Get Back                                          | Beatles, The                            | 1969-05-24  |                1 |
+| Love Theme From Romeo & Juliet                    | Henry Mancini, His Orchestra and Chorus | 1969-06-28  |                1 |
+| In The Year 2525 (Exordium & Terminus)            | Zager & Evans                           | 1969-07-12  |                1 |
+| Honky Tonk Women                                  | Rolling Stones, The                     | 1969-08-23  |                1 |
+| Sugar, Sugar                                      | Archies, The                            | 1969-09-20  |                1 |
+| I Can't Get Next To You                           | Temptations, The                        | 1969-10-18  |                1 |
+| Suspicious Minds                                  | Elvis Presley                           | 1969-11-01  |                1 |
+| Wedding Bell Blues                                | 5th Dimension, The                      | 1969-11-08  |                1 |
+| Come Together                                     | Beatles, The                            | 1969-11-29  |                1 |
+| Na Na Hey Hey Kiss Him Goodbye                    | Steam                                   | 1969-12-06  |                1 |
+| Leaving on A Jet Plane                            | Peter, Paul and Mary                    | 1969-12-20  |                1 |
+| Someday We'll Be Together                         | Diana Ross and the Supremes             | 1969-12-27  |                1 |
++---------------------------------------------------+-----------------------------------------+-------------+------------------+
+16 rows in set (0.02 sec)
+
+mysql> # Queries 5
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `Artist`, 
+    -> MIN(po_pos) as `highest position`
+    -> from tracks, people, position, wrote
+    -> where tr_year = 1973 
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (wrote.wr_p_id = Tracks.tr_artist_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (Tracks.tr_id = wr_track_id)
+    -> AND (position.po_pos <= 20)
+    -> GROUP BY tr_title
+    -> order by people.person ASC;
++--------------------------------------------+-----------------------+------------------+
+| Song Title                                 | Artist                | highest position |
++--------------------------------------------+-----------------------+------------------+
+| Call Me (Come Back Home)                   | Al Green              |               10 |
+| Here I Am (Come And Take Me)               | Al Green              |               10 |
+| My Maria                                   | B.W. Stevenson        |                9 |
+| I'm Gonna Love You Just A Little More Baby | Barry White           |                3 |
+| Will It Go Round In Circles                | Billy Preston         |                1 |
+| Space Race                                 | Billy Preston         |                4 |
+| Knockin' On Heaven's Door                  | Bob Dylan             |               12 |
+| You're So Vain                             | Carly Simon           |                1 |
+| The Right Thing To Do                      | Carly Simon           |               17 |
+| Sitting                                    | Cat Stevens           |               16 |
+| Uneasy Rider                               | Charlie Daniels       |                9 |
+| Superfly                                   | Curtis Mayfield       |                8 |
+| Space Oddity                               | David Bowie           |               15 |
+| Funny Face                                 | Donna Fargo           |                5 |
+| Frankenstein                               | Edgar Winter          |                1 |
+| Crocodile Rock                             | Elton John            |                1 |
+| Saturday Night's Alright For Fighting      | Elton John            |               12 |
+| Goodbye Yellow Brick Road                  | Elton John            |                2 |
+| Daniel                                     | Elton John            |                2 |
+| Give Me Love (Give Me Peace On Earth)      | George Harrison       |                1 |
+| Get Down                                   | Gilbert O'Sullivan    |                7 |
+| Out Of The Question                        | Gilbert O'Sullivan    |               17 |
+| Don't Let Me Be Lonely Tonight             | James Taylor          |               14 |
+| Time In A Bottle                           | Jim Croce             |                1 |
+| Bad, Bad Leroy Brown                       | Jim Croce             |                1 |
+| Theme From "Cleopatra Jones"               | Joe Simon             |               18 |
+| Rocky Mountain High                        | John Denver           |                9 |
+| Mind Games                                 | John Lennon           |               18 |
+| Your Mama Don't Dance                      | Kenny Loggins         |                4 |
+| Why Me                                     | Kris Kristofferson    |               16 |
+| Walk On The Wild Side                      | Lou Reed              |               16 |
+| Dead Skunk                                 | Loudon Wainwright III |               16 |
+| Let's Get It On                            | Marvin Gaye           |                1 |
+| Trouble Man                                | Marvin Gaye           |                7 |
+| Loves Me Like A Rock                       | Paul Simon            |                2 |
+| Kodachrome                                 | Paul Simon            |                2 |
+| Higher Ground                              | Stevie Wonder         |                4 |
+| Superstition                               | Stevie Wonder         |                1 |
+| You Are The Sunshine Of My Life            | Stevie Wonder         |                1 |
+| Hello It's Me                              | Todd Rundgren         |                5 |
++--------------------------------------------+-----------------------+------------------+
+40 rows in set (0.01 sec)
+
+mysql> # Queries 6
+mysql> select DISTINCT tr_title as `Song Title`, count(tr_title) as `Longest position`, 
+    -> people.person AS `Artist`, po_date
+    -> from tracks, people, position
+    -> where YEAR(po_date) = '1972'
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> GROUP BY tr_title
+    -> Order by count(tr_title) DESC
+    -> Limit 2;
++------------------------+------------------+---------+------------+
+| Song Title             | Longest position | Artist  | po_date    |
++------------------------+------------------+---------+------------+
+| Nice To Be With You    |               22 | Gallery | 1972-02-26 |
+| Slippin' Into Darkness |               22 | War     | 1972-01-22 |
++------------------------+------------------+---------+------------+
+2 rows in set (0.04 sec)
+
+mysql> # queries 7
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `artist`
+    -> from tracks, people, position
+    -> where YEAR(po_date) = '1969'
+    -> AND (month(po_date)) = '07' 
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos <= 10 )
+    -> order by people.person ASC;
++----------------------------------------+-----------------------------------------+
+| Song Title                             | artist                                  |
++----------------------------------------+-----------------------------------------+
+| Baby, I Love You                       | Andy Kim                                |
+| Get Back                               | Beatles, The                            |
+| The Ballad Of John And Yoko            | Beatles, The                            |
+| Spinning Wheel                         | Blood, Sweat & Tears                    |
+| Bad Moon Rising                        | Creedence Clearwater Revival            |
+| Love Theme From Romeo & Juliet         | Henry Mancini, His Orchestra and Chorus |
+| What Does It Take (To Win Your Love)   | Jr. Walker & the All Stars              |
+| Too Busy Thinking About My Baby        | Marvin Gaye                             |
+| Good Morning Starshine                 | Oliver                                  |
+| My Cherie Amour                        | Stevie Wonder                           |
+| One                                    | Three Dog Night                         |
+| Crystal Blue Persuasion                | Tommy James and the Shondells           |
+| Color Him Father                       | Winstons, The                           |
+| In The Year 2525 (Exordium & Terminus) | Zager & Evans                           |
++----------------------------------------+-----------------------------------------+
+14 rows in set (0.02 sec)
+
+mysql> # queries 8
+mysql> select DISTINCT A.tr_title as `Song Title`, people.person AS `artist`
+    -> from tracks as A, tracks as B, people, position
+    -> where A.tr_year = '1969' and B.tr_year = '1969'
+    -> AND (A.tr_artist_id = People.p_id)
+    -> AND (A.tr_id = position.po_track_id)
+    -> AND (A.tr_title = B.tr_title)
+    -> AND (A.tr_artist_id <> B.tr_artist_id)
+    -> order by A.tr_title ASC;
++-------------------------------+------------------------------+
+| Song Title                    | artist                       |
++-------------------------------+------------------------------+
+| Abraham, Martin And John      | Moms Mabley                  |
+| Abraham, Martin And John      | Smokey Robinson              |
+| By The Time I Get To Phoenix  | Mad Lads, The                |
+| By The Time I Get To Phoenix  | Isaac Hayes                  |
+| Cloud Nine                    | Mongo Santamaria             |
+| Cloud Nine                    | Temptations, The             |
+| Feeling Alright               | Mongo Santamaria             |
+| Feeling Alright               | Joe Cocker                   |
+| Galveston                     | Roger Williams               |
+| Galveston                     | Glen Campbell                |
+| Good Morning Starshine        | Oliver                       |
+| Good Morning Starshine        | Strawberry Alarm Clock       |
+| Happy Heart                   | Petula Clark                 |
+| Happy Heart                   | Andy Williams                |
+| I'll Never Fall In Love Again | Burt Bacharach               |
+| I'll Never Fall In Love Again | Tom Jones                    |
+| Lodi                          | Al Wilson                    |
+| Lodi                          | Creedence Clearwater Revival |
+| Proud Mary                    | Checkmates, Ltd., The        |
+| Proud Mary                    | Creedence Clearwater Revival |
+| Proud Mary                    | Solomon Burke                |
+| The Weight                    | Diana Ross and the Supremes  |
+| The Weight                    | Aretha Franklin              |
+| These Eyes                    | Jr. Walker & the All Stars   |
+| These Eyes                    | Guess Who, The               |
+| Wichita Lineman               | Sergio Mendes and Brasil '66 |
+| Wichita Lineman               | Glen Campbell                |
++-------------------------------+------------------------------+
+27 rows in set (0.02 sec)
+
+mysql> # queries 9
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `artist`, po_date as `Date`
+    -> from tracks, people, position
+    -> where YEAR(po_date) = '1964'
+    -> AND (month(po_date) = '04')
+    -> AND (day(po_date) <= 10)
+    -> AND (day(po_date) >= 04)  
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos <= 40 )
+    -> order by po_pos ASC;
++---------------------------------------------------+--------------------------+------------+
+| Song Title                                        | artist                   | Date       |
++---------------------------------------------------+--------------------------+------------+
+| Can't Buy Me Love                                 | Beatles, The             | 1964-04-04 |
+| Twist And Shout                                   | Beatles, The             | 1964-04-04 |
+| She Loves You                                     | Beatles, The             | 1964-04-04 |
+| I Want To Hold Your Hand                          | Beatles, The             | 1964-04-04 |
+| Please Please Me                                  | Beatles, The             | 1964-04-04 |
+| Suspicion                                         | Terry Stafford           | 1964-04-04 |
+| Hello, Dolly!                                     | Louis Armstrong          | 1964-04-04 |
+| The Shoop Shoop Song (It's In His Kiss)           | Betty Everett            | 1964-04-04 |
+| My Heart Belongs To Only You                      | Bobby Vinton             | 1964-04-04 |
+| Glad All Over                                     | Dave Clark Five          | 1964-04-04 |
+| Dawn (Go Away)                                    | Four Seasons, The        | 1964-04-04 |
+| The Way You Do The Things You Do                  | Temptations, The         | 1964-04-04 |
+| Fun, Fun, Fun                                     | Beach Boys, The          | 1964-04-04 |
+| Don't Let The Rain Come Down (Crooked Little Man) | Serendipity Singers, The | 1964-04-04 |
+| Needles And Pins                                  | Searchers, The           | 1964-04-04 |
+| Stay                                              | Four Seasons, The        | 1964-04-04 |
+| Kissin' Cousins                                   | Elvis Presley            | 1964-04-04 |
+| You're A Wonderful One                            | Marvin Gaye              | 1964-04-04 |
+| Java                                              | Al (He's the King) Hirt  | 1964-04-04 |
+| Hi-Heel Sneakers                                  | Tommy Tucker             | 1964-04-04 |
+| Ain't Nothing You Can Do                          | Bobby Bland              | 1964-04-04 |
+| Money                                             | Kingsmen, The            | 1964-04-04 |
+| I Love You More And More Every Day                | Al Martino               | 1964-04-04 |
+| Hippy Hippy Shake                                 | Swinging Blue Jeans, The | 1964-04-04 |
+| Dead Man's Curve                                  | Jan and Dean             | 1964-04-04 |
+| Think                                             | Brenda Lee               | 1964-04-04 |
+| Navy Blue                                         | Diane Renay              | 1964-04-04 |
+| Blue Winter                                       | Connie Francis           | 1964-04-04 |
+| It Hurts Me                                       | Elvis Presley            | 1964-04-04 |
+| Nadine (Is It You)                                | Chuck Berry              | 1964-04-04 |
+| I Saw Her Standing There                          | Beatles, The             | 1964-04-04 |
+| Hey Jean, Hey Dean                                | Dean And Jean            | 1964-04-04 |
+| Tell It On The Mountain                           | Peter, Paul and Mary     | 1964-04-04 |
+| White On White                                    | Danny Williams           | 1964-04-04 |
+| Hey, Bobba Needle                                 | Chubby Checker           | 1964-04-04 |
+| Rip Van Winkle                                    | Devotions, The           | 1964-04-04 |
+| See The Funny Little Clown                        | Bobby Goldsboro          | 1964-04-04 |
+| My Heart Cries For You                            | Ray Charles              | 1964-04-04 |
+| That's The Way Boys Are                           | Lesley Gore              | 1964-04-04 |
+| The New Girl In School                            | Jan and Dean             | 1964-04-04 |
++---------------------------------------------------+--------------------------+------------+
+40 rows in set (0.02 sec)
+
+mysql> # queries 10
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `artist`, tr_datepeaked as `Date Peaked`
+    -> from tracks, people, position
+    -> where tr_year = '1968'
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (tr_peakpos BETWEEN 6 AND 10)
+    -> order by tr_datepeaked DESC;
++----------------------------------------------------------+------------------------------+-------------+
+| Song Title                                               | artist                       | Date Peaked |
++----------------------------------------------------------+------------------------------+-------------+
+| Both Sides Now                                           | Judy Collins                 | 1968-12-21  |
+| I Love How You Love Me                                   | Bobby Vinton                 | 1968-12-14  |
+| White Room                                               | Cream                        | 1968-11-09  |
+| Elenore                                                  | Turtles, The                 | 1968-11-02  |
+| Over You                                                 | Gary Puckett                 | 1968-10-26  |
+| Say It Loud - I'm Black And I'm Proud (Part 1)           | James Brown                  | 1968-10-19  |
+| My Special Angel                                         | Vogues, The                  | 1968-10-12  |
+| Slip Away                                                | Clarence Carter              | 1968-10-05  |
+| I Say A Little Prayer                                    | Aretha Franklin              | 1968-10-05  |
+| The Fool On The Hill                                     | Sergio Mendes and Brasil '66 | 1968-09-28  |
+| I've Gotta Get A Message To You                          | Bee Gees                     | 1968-09-28  |
+| You're All I Need To Get By                              | Marvin Gaye                  | 1968-09-14  |
+| The House That Jack Built                                | Aretha Franklin              | 1968-09-07  |
+| You Keep Me Hangin' On                                   | Vanilla Fudge                | 1968-08-31  |
+| Stay In My Corner                                        | Dells, The                   | 1968-08-24  |
+| I Can't Stop Dancing                                     | Archie Bell & The Drells     | 1968-08-24  |
+| Turn Around, Look At Me                                  | Vogues, The                  | 1968-08-17  |
+| Indian Lake                                              | Cowsills, The                | 1968-07-13  |
+| Here Comes The Judge                                     | Shorty Long                  | 1968-07-06  |
+| Angel Of The Morning                                     | Merrilee Rush                | 1968-06-29  |
+| Reach Out Of The Darkness                                | Friend and Lover             | 1968-06-22  |
+| Think                                                    | Aretha Franklin              | 1968-06-15  |
+| Shoo-Be-Doo-Be-Doo-Da-Day                                | Stevie Wonder                | 1968-05-25  |
+| Ain't Nothing Like The Real Thing                        | Marvin Gaye                  | 1968-05-25  |
+| The Unicorn                                              | Irish Rovers, The            | 1968-05-25  |
+| Love Is All Around                                       | Troggs, The                  | 1968-05-18  |
+| Do You Know The Way To San Jose                          | Dionne Warwick               | 1968-05-18  |
+| Cowboys To Girls                                         | Intruders, The               | 1968-05-18  |
+| I Got The Feelin'                                        | James Brown                  | 1968-04-27  |
+| Dance To The Music                                       | Sly and the Family Stone     | 1968-04-20  |
+| The Ballad Of Bonnie And Clyde                           | Georgie Fame                 | 1968-04-13  |
+| Mighty Quinn (Quinn The Eskimo)                          | Manfred Mann                 | 1968-04-13  |
+| I Thank You                                              | Sam and Dave                 | 1968-03-23  |
+| Bottle Of Wine                                           | Fireballs, The               | 1968-03-02  |
+| Everything That Touches You                              | Association, The             | 1968-03-02  |
+| I Wonder What She's Doing Tonite                         | Tommy Boyce and Bobby Hart   | 1968-02-24  |
+| Goin' Out Of My Head/Can't Take My Eyes Off You (Medley) | Lettermen, The               | 1968-02-10  |
+| Nobody But Me                                            | Human Beinz, The             | 1968-02-03  |
+| If I Could Build My Whole World Around You               | Marvin Gaye                  | 1968-01-20  |
++----------------------------------------------------------+------------------------------+-------------+
+39 rows in set (0.00 sec)
+
+mysql> # queries 11
+mysql> select DISTINCT `t`.tr_yearlyrank,  `t`.tr_title,  `t`.tr_artist_id,  `t`.tr_dateentered, po_date
+    -> from tracks `t` inner join position `po` ON `t`.`tr_id` = `po`.`po_track_id` left JOIN `wrote` 
+    -> `c` ON `c`.`wr_track_id` = `t`.`tr_id` left JOIN `people` `p` ON `p`.`p_id` = `c`.`wr_p_id` 
+    -> where po_date = '1968-09-07' 
+    -> order by po_pos ASC;
++---------------+--------------------------------------------------+--------------+----------------+------------+
+| tr_yearlyrank | tr_title                                         | tr_artist_id | tr_dateentered | po_date    |
++---------------+--------------------------------------------------+--------------+----------------+------------+
+| 1968_005      | People Got To Be Free                            | 4598         | 1968-07-20     | 1968-09-07 |
+| 1968_020      | Born To Be Wild                                  | 4607         | 1968-07-13     | 1968-09-07 |
+| 1968_033      | Light My Fire                                    | 1659         | 1968-07-27     | 1968-09-07 |
+| 1968_014      | Harper Valley P.T.A.                             | 4602         | 1968-08-24     | 1968-09-07 |
+| 1968_011      | Hello, I Love You                                | 4447         | 1968-07-06     | 1968-09-07 |
+| 1968_061      | The House That Jack Built                        | 1190         | 1968-08-17     | 1968-09-07 |
+| 1968_052      | 1,2,3 Red Light                                  | 4613         | 1968-07-27     | 1968-09-07 |
+| 1968_074      | You're All I Need To Get By                      | 547          | 1968-07-27     | 1968-09-07 |
+| 1968_084      | I Can't Stop Dancing                             | 4599         | 1968-07-20     | 1968-09-07 |
+| 1968_089      | Stay In My Corner                                | 4534         | 1968-06-29     | 1968-09-07 |
+| 1968_054      | Sunshine Of Your Love                            | 4619         | 1968-01-13     | 1968-09-07 |
+| 1968_065      | You Keep Me Hangin' On                           | 4543         | 1968-07-13     | 1968-09-07 |
+| 1968_044      | Hush                                             | 4615         | 1968-08-17     | 1968-09-07 |
+| 1968_068      | Turn Around, Look At Me                          | 4136         | 1968-06-15     | 1968-09-07 |
+| 1968_122      | Love Makes A Woman                               | 821          | 1968-07-13     | 1968-09-07 |
+| 1968_024      | Classical Gas                                    | 1181         | 1968-06-22     | 1968-09-07 |
+| 1968_064      | The Fool On The Hill                             | 4359         | 1968-08-10     | 1968-09-07 |
+| 1968_063      | Slip Away                                        | 1242         | 1968-07-13     | 1968-09-07 |
+| 1968_129      | Journey To The Center Of The Mind                | 4637         | 1968-06-29     | 1968-09-07 |
+| 1968_140      | Soul-Limbo                                       | 4103         | 1968-07-13     | 1968-09-07 |
+| 1968_146      | Sealed With A Kiss                               | 4124         | 1968-06-22     | 1968-09-07 |
+| 1968_157      | Do It Again                                      | 3873         | 1968-07-27     | 1968-09-07 |
+| 1968_096      | I Say A Little Prayer                            | 1190         | 1968-08-17     | 1968-09-07 |
+| 1968_030      | Stoned Soul Picnic                               | 4465         | 1968-06-01     | 1968-09-07 |
+| 1968_105      | Dream A Little Dream Of Me                       | 4630         | 1968-07-06     | 1968-09-07 |
+| 1968_194      | Please Return Your Love To Me                    | 3932         | 1968-08-03     | 1968-09-07 |
+| 1968_186      | Magic Bus                                        | 4265         | 1968-08-10     | 1968-09-07 |
+| 1968_207      | Mr. Businessman                                  | 4418         | 1968-08-03     | 1968-09-07 |
+| 1968_179      | Tuesday Afternoon (Forever Afternoon)            | 4154         | 1968-07-20     | 1968-09-07 |
+| 1968_076      | I've Gotta Get A Message To You                  | 4475         | 1968-08-17     | 1968-09-07 |
+| 1968_106      | Pictures Of Matchstick Men                       | 4631         | 1968-05-18     | 1968-09-07 |
+| 1968_204      | The Eyes Of A New York Woman                     | 4310         | 1968-06-22     | 1968-09-07 |
+| 1968_234      | Girls Can't Do What The Guys Do                  | 2295         | 1968-08-03     | 1968-09-07 |
+| 1968_238      | I Get The Sweetest Feeling                       | 637          | 1968-07-20     | 1968-09-07 |
+| 1968_135      | On The Road Again                                | 4639         | 1968-08-10     | 1968-09-07 |
+| 1968_235      | Down At Lulu's                                   | 4499         | 1968-08-03     | 1968-09-07 |
+| 1968_195      | Special Occasion                                 | 607          | 1968-08-17     | 1968-09-07 |
+| 1968_048      | Girl Watcher                                     | 4617         | 1968-08-17     | 1968-09-07 |
+| 1968_198      | Alice Long (You're Still My Favorite Girlfriend) | 4510         | 1968-07-06     | 1968-09-07 |
+| 1968_273      | I've Never Found A Girl (To Love Me Like You Do) | 870          | 1968-07-27     | 1968-09-07 |
+| 1968_057      | Hurdy Gurdy Man                                  | 4176         | 1968-06-22     | 1968-09-07 |
+| 1968_283      | I Can't Dance To That Music You're Playin'       | 4472         | 1968-08-10     | 1968-09-07 |
+| 1968_289      | Give A Damn                                      | 4470         | 1968-08-03     | 1968-09-07 |
+| 1968_200      | The Snake                                        | 4650         | 1968-08-17     | 1968-09-07 |
+| 1968_026      | Little Green Apples                              | 4609         | 1968-08-17     | 1968-09-07 |
+| 1968_219      | Hip City (Part 2)                                | 4133         | 1968-08-10     | 1968-09-07 |
+| 1968_293      | Brown Eyed Woman                                 | 227          | 1968-08-03     | 1968-09-07 |
+| 1968_312      | Six Man Band                                     | 4287         | 1968-08-24     | 1968-09-07 |
+| 1968_278      | I Wish It Would Rain                             | 3983         | 1968-08-24     | 1968-09-07 |
+| 1968_246      | Help Yourself                                    | 676          | 1968-08-31     | 1968-09-07 |
+| 1968_097      | Time Has Come Today                              | 4627         | 1968-08-10     | 1968-09-07 |
+| 1968_230      | Who Is Gonna Love Me                             | 3910         | 1968-08-24     | 1968-09-07 |
+| 1968_344      | Morning Dew                                      | 4445         | 1968-08-10     | 1968-09-07 |
+| 1968_303      | And Suddenly                                     | 4661         | 1968-07-20     | 1968-09-07 |
+| 1968_353      | Can't You Find Another Way (Of Doing It)         | 4331         | 1968-08-03     | 1968-09-07 |
+| 1968_328      | To Wait For Love                                 | 1633         | 1968-08-31     | 1968-09-07 |
+| 1968_301      | Listen Here                                      | 1716         | 1968-06-15     | 1968-09-07 |
+| 1968_348      | Keep The One You Got                             | 474          | 1968-08-10     | 1968-09-07 |
+| 1968_107      | Piece Of My Heart                                | 4632         | 1968-08-31     | 1968-09-07 |
+| 1968_095      | Say It Loud - I'm Black And I'm Proud (Part 1)   | 126          | 1968-09-07     | 1968-09-07 |
+| 1968_159      | (The Lament Of The Cherokee) Indian Reservation  | 4642         | 1968-08-31     | 1968-09-07 |
+| 1968_072      | My Special Angel                                 | 4136         | 1968-09-07     | 1968-09-07 |
+| 1968_406      | Workin' On A Groovy Thing                        | 4563         | 1968-08-03     | 1968-09-07 |
+| 1968_055      | Midnight Confessions                             | 4339         | 1968-08-31     | 1968-09-07 |
+| 1968_361      | The Weight                                       | 184          | 1968-08-24     | 1968-09-07 |
+| 1968_214      | In-A-Gadda-Da-Vida                               | 4654         | 1968-08-24     | 1968-09-07 |
+| 1968_439      | Barefoot In Baltimore                            | 4449         | 1968-08-31     | 1968-09-07 |
+| 1968_398      | I Loved And I Lost                               | 3925         | 1968-07-20     | 1968-09-07 |
+| 1968_294      | Down On Me                                       | 4632         | 1968-08-31     | 1968-09-07 |
+| 1968_429      | (There's) Always Something There To Remind Me    | 3910         | 1968-08-31     | 1968-09-07 |
+| 1968_245      | Break Your Promise                               | 4616         | 1968-08-31     | 1968-09-07 |
+| 1968_225      | Baby, Come Back                                  | 4655         | 1968-09-07     | 1968-09-07 |
+| 1968_341      | Fly Me To The Moon                               | 145          | 1968-08-17     | 1968-09-07 |
+| 1968_463      | Down Here On The Ground                          | 1072         | 1968-08-31     | 1968-09-07 |
+| 1968_493      | Private Number                                   | 4684         | 1968-08-31     | 1968-09-07 |
+| 1968_416      | The Weight                                       | 4675         | 1968-08-31     | 1968-09-07 |
+| 1968_481      | Unchained Melody                                 | 4529         | 1968-08-31     | 1968-09-07 |
+| 1968_421      | My Way Of Life                                   | 3965         | 1968-08-31     | 1968-09-07 |
+| 1968_133      | Hey, Western Union Man                           | 980          | 1968-08-31     | 1968-09-07 |
+| 1968_499      | That Kind Of Woman                               | 4621         | 1968-08-31     | 1968-09-07 |
+| 1968_028      | Fire                                             | 4610         | 1968-09-07     | 1968-09-07 |
+| 1968_528      | The Mule                                         | 4691         | 1968-08-31     | 1968-09-07 |
+| 1968_387      | Don't Change Your Love                           | 4362         | 1968-08-24     | 1968-09-07 |
+| 1968_318      | Street Fighting Man                              | 3906         | 1968-09-07     | 1968-09-07 |
+| 1968_538      | Do What You Gotta Do                             | 249          | 1968-08-31     | 1968-09-07 |
+| 1968_564      | If Love Is In Your Heart                         | 4626         | 1968-08-31     | 1968-09-07 |
+| 1968_549      | Then You Can Tell Me Goodbye                     | 2777         | 1968-09-07     | 1968-09-07 |
+| 1968_218      | Shoot'em Up, Baby                                | 2071         | 1968-09-07     | 1968-09-07 |
+| 1968_276      | Naturally Stoned                                 | 4660         | 1968-08-31     | 1968-09-07 |
+| 1968_164      | Shape Of Things To Come                          | 4643         | 1968-09-07     | 1968-09-07 |
+| 1968_568      | Light My Fire                                    | 4447         | 1968-08-31     | 1968-09-07 |
+| 1968_102      | Suzie Q (Part 1)                                 | 4629         | 1968-09-07     | 1968-09-07 |
+| 1968_268      | The Funky Judge                                  | 4659         | 1968-08-24     | 1968-09-07 |
+| 1968_623      | The Woman I Love                                 | 1276         | 1968-08-24     | 1968-09-07 |
+| 1968_635      | Sally Had A Party                                | 4716         | 1968-08-03     | 1968-09-07 |
+| 1968_631      | Help Yourself (To All Of My Lovin')              | 4306         | 1968-08-31     | 1968-09-07 |
+| 1968_656      | She's About A Mover                              | 4721         | 1968-08-24     | 1968-09-07 |
+| 1968_664      | Since You've Been Gone                           | 847          | 1968-08-31     | 1968-09-07 |
+| 1968_167      | Fool For You                                     | 3925         | 1968-09-07     | 1968-09-07 |
+| 1968_681      | Lady Madonna                                     | 4035         | 1968-09-07     | 1968-09-07 |
++---------------+--------------------------------------------------+--------------+----------------+------------+
+100 rows in set (0.02 sec)
+
+mysql> notee
+
+mysql> use project
+Database changed
+mysql> # Queries 11-2
+mysql> select DISTINCT tr_title as `Song Title`, people.person AS `Artist`, 
+    -> po_date as `Date`, po_pos as `highest position`
+    -> from tracks, people, position
+    -> where month(po_date) = 05 and day(po_date) = 20 
+    -> AND (year(po_date) between 1967 and 1974)
+    -> AND (Tracks.tr_artist_id = People.p_id)
+    -> AND (Tracks.tr_id = position.po_track_id)
+    -> AND (position.po_pos <= 10 )
+    -> order by po_pos ASC;
++-------------------------------------+-----------------------+------------+------------------+
+| Song Title                          | Artist                | Date       | highest position |
++-------------------------------------+-----------------------+------------+------------------+
+| Groovin'                            | Young Rascals         | 1967-05-20 |                1 |
+| The First Time Ever I Saw Your Face | Roberta Flack         | 1972-05-20 |                1 |
+| The Happening                       | Supremes, The         | 1967-05-20 |                2 |
+| Oh Girl                             | Chi-Lites, The        | 1972-05-20 |                2 |
+| Sweet Soul Music                    | Arthur Conley         | 1967-05-20 |                3 |
+| I'll Take You There                 | Staple Singers, The   | 1972-05-20 |                3 |
+| Somethin' Stupid                    | Nancy Sinatra         | 1967-05-20 |                4 |
+| I Gotcha                            | Joe Tex               | 1972-05-20 |                4 |
+| Respect                             | Aretha Franklin       | 1967-05-20 |                5 |
+| Look What You Done For Me           | Al Green              | 1972-05-20 |                5 |
+| I Got Rhythm                        | Happenings, The       | 1967-05-20 |                6 |
+| Rockin' Robin                       | Michael Jackson       | 1972-05-20 |                6 |
+| Release Me (And Let Me Love Again)  | Engelbert Humperdinck | 1967-05-20 |                7 |
+| Betcha By Golly, Wow                | Stylistics, The       | 1972-05-20 |                7 |
+| Close Your Eyes                     | Peaches and Herb      | 1967-05-20 |                8 |
+| Tumbling Dice                       | Rolling Stones, The   | 1972-05-20 |                8 |
+| Don't You Care                      | Buckinghams, The      | 1967-05-20 |                9 |
+| Back Off Boogaloo                   | Ringo Starr           | 1972-05-20 |                9 |
+| You Got What It Takes               | Dave Clark Five       | 1967-05-20 |               10 |
+| Morning Has Broken                  | Cat Stevens           | 1972-05-20 |               10 |
++-------------------------------------+-----------------------+------------+------------------+
+20 rows in set (0.02 sec)
+
+mysql> Terminal close -- exit!
